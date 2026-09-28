@@ -756,6 +756,116 @@ h2 em {
   letter-spacing: 1px;
 }
 
+.admin-panel {
+  margin-top: 42px;
+}
+
+.admin-toolbar,
+.admin-block-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.admin-toolbar h3,
+.admin-block-heading h3 {
+  margin: 4px 0 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.admin-toolbar .button {
+  padding: 12px 18px;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 28px 0 42px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-stats > div {
+  display: grid;
+  gap: 8px;
+  padding: 18px 22px;
+  border-right: 1px solid var(--line);
+}
+
+.admin-stats > div:last-child {
+  border-right: 0;
+}
+
+.admin-stats span,
+.admin-block-heading span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.admin-stats strong {
+  color: var(--gold);
+  font-size: 28px;
+}
+
+.admin-block {
+  margin-top: 34px;
+}
+
+.admin-block-heading {
+  margin-bottom: 14px;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 13px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.admin-table th {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.admin-table td {
+  font-size: 13px;
+}
+
+.admin-table select {
+  max-width: 130px;
+  padding: 8px;
+}
+
+.admin-save-btn {
+  padding: 8px 12px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.admin-empty {
+  padding: 20px 12px !important;
+  color: var(--muted);
+  text-align: center;
+}
+
 /* =========================
    FOOTER
    ========================= */
@@ -1144,6 +1254,25 @@ footer.site-footer {
   .status {
     display: block;
     margin-top: 12px;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-stats > div {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .admin-stats > div:last-child {
+    border-bottom: 0;
+  }
+
+  .admin-toolbar,
+  .admin-block-heading {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 

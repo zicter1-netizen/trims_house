@@ -9,32 +9,32 @@ const products=[
   {category:'cuidado',name:'Aceite de Barba',desc:'Suavidad y brillo sin grasa.',price:28000,image:'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=700&q=85'},
   {category:'cuidado',name:'Shampoo Carbon',desc:'Limpieza profunda para uso diario.',price:39000,image:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80'},
   {category:'cuidado',name:'Sea Salt Spray',desc:'Volumen y textura de playa.',price:31000,image:'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80'},
-  {category:'camisetas',name:'Camiseta Trims House',desc:'Algodon premium, corte regular y estilo urbano.',price:59000,image:'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=700&q=80'},
+  {category:'camisetas',name:'Camiseta Trims House',desc:'Algodon premium, corte regular y estilo urbano.',price:59000,image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80'},
   {category:'camisetas',name:'Camiseta Oversize',desc:'Silhouette relajada, ideal para looks casuales.',price:62000,image:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=80'},
-  {category:'camisetas',name:'Camiseta Negra Premium',desc:'Negro basico con excelente caida y comodidad.',price:65000,image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80'},
-  {category:'camisetas',name:'Camiseta Minimalista',desc:'Diseño limpio para combinar con cualquier outfit.',price:54000,image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80'},
+  {category:'camisetas',name:'Camiseta Negra Premium',desc:'Negro basico con excelente caida y comodidad.',price:65000,image:'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=700&q=80'},
+  {category:'camisetas',name:'Camiseta Minimalista',desc:'Diseño limpio para combinar con cualquier outfit.',price:54000,image:'https://images.unsplash.com/photo-1554568218-0f1715e72254?auto=format&fit=crop&w=700&q=80'},
   {category:'gorras',name:'Gorra Signature',desc:'Ajuste cómodo, visera curvada y acabado premium.',price:64000,image:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=80'},
-  {category:'gorras',name:'Gorra Curva Classic',desc:'Estilo retro con tela resistente y gran comodo.',price:68000,image:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=80'},
+  {category:'gorras',name:'Gorra Curva Classic',desc:'Estilo retro con tela resistente y gran comodo.',price:68000,image:'https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=700&q=80'},
   {category:'gorras',name:'Gorra Roadie',desc:'Diseño funcional para usar en todo momento.',price:72000,image:'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&w=700&q=80'},
-  {category:'gorras',name:'Gorra Sport',desc:'Ideal para salidas, gym o uso diario.',price:61000,image:'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&w=700&q=80'},
-  {category:'accesorios',name:'Travel Kit',desc:'Set de bolsillo para cuidado y estilo diario.',price:75000,image:'https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?auto=format&fit=crop&w=700&q=80'},
-  {category:'accesorios',name:'Bandana House',desc:'Proteccion y estilo para cada dia en la calle.',price:24000,image:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80'},
-  {category:'accesorios',name:'Llavero Trims',desc:'Detalle premium para llevar tus llaves con personalidad.',price:26000,image:'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=80'},
-  {category:'accesorios',name:'Mochila Compacta',desc:'Espacio y estilo para tu dia a dia.',price:89000,image:'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80'}
+  {category:'gorras',name:'Gorra Sport',desc:'Ideal para salidas, gym o uso diario.',price:61000,image:'https://images.unsplash.com/photo-1534215754734-18e55d13e346?auto=format&fit=crop&w=700&q=80'},
+  {category:'accesorios',name:'Travel Kit',desc:'Set de bolsillo para cuidado y estilo diario.',price:75000,image:'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=700&q=80'},
+  {category:'accesorios',name:'Bandana House',desc:'Proteccion y estilo para cada dia en la calle.',price:24000,image:'https://images.unsplash.com/photo-1519070813808-1d7a33907487?auto=format&fit=crop&w=700&q=80'},
+  {category:'accesorios',name:'Llavero Trims',desc:'Detalle premium para llevar tus llaves con personalidad.',price:26000,image:'https://images.unsplash.com/photo-1722487631997-cf1e0f92c2c4?auto=format&fit=crop&w=700&q=80'},
+  {category:'accesorios',name:'Mochila Compacta',desc:'Espacio y estilo para tu dia a dia.',price:89000,image:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80'}
 ];
 
 let currentUser=window.INITIAL_USER||JSON.parse(localStorage.getItem('trimsUser')||'null');
 let registerMode=false;
 let cart=JSON.parse(localStorage.getItem('trimsCart')||'[]');
 
-const FALLBACK_LOCALHOST='http://localhost/trims_house';
-const APP_BASE = window.location.protocol === 'file:'
-  ? FALLBACK_LOCALHOST
-  : window.location.origin + (window.location.pathname.includes('/trims_house') ? '/trims_house' : '');
-const API_URL=`${APP_BASE}/backend/api.php`;
+const FALLBACK_LOCALHOST='http://localhost/trims_house/trims_house';
+const API_URL=window.location.protocol==='file:'
+  ? `${FALLBACK_LOCALHOST}/backend/api.php`
+  : new URL('backend/api.php',window.location.href).toString();
 
 const $=s=>document.querySelector(s);
 const formatCurrency=value=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(value);
+const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const toast=msg=>{const t=$('#toast');
 t.textContent=msg;
 t.classList.add('show');
@@ -175,17 +175,56 @@ function renderAccount(){
   if(!account){ return; }
   if(!currentUser){
     account.classList.add('hidden');
+    $('#adminPanel').classList.add('hidden');
     $('#userMenu').innerHTML='';
     $('#authBtn').textContent='Iniciar sesion';
     return;
   }
   $('#authBtn').textContent=currentUser.name.split(' ')[0];
-  $('#userMenu').innerHTML=`<strong>${currentUser.name}</strong><br><small>${currentUser.role==='barbero'?'Panel de barbero':'Cuenta de cliente'}</small><br><button id="logoutBtn">Cerrar sesion</button>`;
+  const roleLabel=currentUser.role==='administrador'?'Panel de administrador':currentUser.role==='barbero'?'Panel de barbero':'Cuenta de cliente';
+  $('#userMenu').innerHTML=`<strong>${escapeHtml(currentUser.name)}</strong><br><small>${roleLabel}</small><br><button id="logoutBtn">Cerrar sesion</button>`;
   account.classList.remove('hidden');
-  $('#accountTitle').innerHTML=currentUser.role==='barbero'?'Agenda del equipo.':'Mis citas.';
-  $('#accountSubtitle').textContent=currentUser.role==='barbero'?'Administra las citas que tienes pendientes.':'Consulta tus proximas visitas a Trims House.';
+  const isAdmin=currentUser.role==='administrador';
+  $('#accountTitle').textContent=isAdmin?'Centro de administración.':currentUser.role==='barbero'?'Agenda del equipo.':'Mis citas.';
+  $('#accountSubtitle').textContent=isAdmin?'Resumen del negocio, citas y cuentas registradas.':currentUser.role==='barbero'?'Administra las citas que tienes pendientes.':'Consulta tus proximas visitas a Trims House.';
+  $('#adminPanel').classList.toggle('hidden',!isAdmin);
+  $('#appointmentList').classList.toggle('hidden',isAdmin);
+  if(isAdmin){
+    loadAdminDashboard();
+    return;
+  }
   const appointments=JSON.parse(localStorage.getItem('trimsAppointments')||'[]').filter(a=>currentUser.role==='barbero'?true:a.email===currentUser.email);
   $('#appointmentList').innerHTML=appointments.length?appointments.map(a=>`<div class="appointment"><div><strong>${a.service}</strong><small>${a.date} · ${a.time} · ${a.barber}${currentUser.role==='barbero'?` · ${a.email}`:''}</small></div><span class="status">Confirmada</span></div>`).join(''):'<p class="section-description">Aun no tienes citas pendientes. Reserva tu siguiente visita arriba.</p>';
+}
+
+async function loadAdminDashboard(){
+  const result=await post({action:'admin_dashboard'});
+  if(!result.ok){
+    $('#adminMessage').textContent=result.message||'No se pudo cargar el panel de administración.';
+    return;
+  }
+  $('#adminMessage').textContent='';
+  $('#adminUserCount').textContent=result.stats.users;
+  $('#adminAppointmentCount').textContent=result.stats.appointments;
+  $('#adminPendingCount').textContent=result.stats.pending;
+  $('#adminBookingsLabel').textContent=`${result.appointments.length} registros`;
+  $('#adminUsersLabel').textContent=`${result.users.length} cuentas`;
+  $('#adminAppointments').innerHTML=result.appointments.length?result.appointments.map(appointment=>`<tr>
+    <td>${escapeHtml(appointment.customer)}<small>${escapeHtml(appointment.email)}</small></td>
+    <td>${escapeHtml(appointment.service)}</td>
+    <td>${escapeHtml(appointment.barber||'Sin asignar')}</td>
+    <td>${escapeHtml(appointment.appointment_date)} · ${escapeHtml(String(appointment.appointment_time).slice(0,5))}</td>
+    <td><select aria-label="Estado de la cita ${appointment.id}" data-status-for="${appointment.id}">
+      <option value="pendiente" ${appointment.status==='pendiente'?'selected':''}>Pendiente</option>
+      <option value="confirmada" ${appointment.status==='confirmada'?'selected':''}>Confirmada</option>
+      <option value="cancelada" ${appointment.status==='cancelada'?'selected':''}>Cancelada</option>
+    </select></td>
+    <td><button class="admin-save-btn" type="button" data-appointment-id="${appointment.id}">Guardar</button></td>
+  </tr>`).join(''):'<tr><td colspan="6" class="admin-empty">Todavía no hay citas registradas.</td></tr>';
+  $('#adminUsers').innerHTML=result.users.length?result.users.map(user=>`<tr>
+    <td>${escapeHtml(user.name)}</td><td>${escapeHtml(user.email)}</td>
+    <td>${escapeHtml(user.role)}</td><td>${escapeHtml(String(user.created_at).slice(0,10))}</td>
+  </tr>`).join(''):'<tr><td colspan="4" class="admin-empty">Todavía no hay usuarios.</td></tr>';
 }
 
 function openProduct(index){
@@ -219,7 +258,6 @@ function updateAuthModal(){
   $('#authTitle').textContent=registerMode?'Crea tu cuenta.':'Inicia sesion.';
   $('#authSubmit').innerHTML=registerMode?'Registrarme <span>↗</span>':'Entrar a mi cuenta <span>↗</span>';
   $('#nameField').classList.toggle('hidden',!registerMode);
-  $('#roleField').classList.toggle('hidden',!registerMode);
   $('#switchAuth').innerHTML=registerMode?'¿Ya tienes cuenta? <b>Inicia sesion</b>':'¿Nuevo por aqui? <b>Crea tu cuenta</b>';
   $('#authMessage').textContent='';
 }
@@ -296,6 +334,20 @@ updateAuthModal()});
 document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$('#'+b.dataset.close).classList.add('hidden')));
 $('#authModal').addEventListener('click',e=>{if(e.target.id==='authModal')e.currentTarget.classList.add('hidden')});
 
+$('#refreshAdminBtn').addEventListener('click',loadAdminDashboard);
+$('#adminAppointments').addEventListener('click',async e=>{
+  const button=e.target.closest('[data-appointment-id]');
+  if(!button)return;
+  const status=$(`[data-status-for="${button.dataset.appointmentId}"]`).value;
+  const result=await post({action:'admin_update_appointment',appointment_id:button.dataset.appointmentId,status});
+  if(!result.ok){
+    $('#adminMessage').textContent=result.message||'No se pudo actualizar la cita.';
+    return;
+  }
+  toast('Estado de cita actualizado');
+  loadAdminDashboard();
+});
+
 $('#authForm').addEventListener('submit',async e=>{e.preventDefault();
 const data=Object.fromEntries(new FormData(e.target));
 data.action=registerMode?'register':'login';
@@ -307,7 +359,7 @@ $('#authModal').classList.add('hidden');
 $('#userMenu').innerHTML=`<strong>${currentUser.name}</strong><br><small>${currentUser.role==='barbero'?'Panel de barbero':'Cuenta de cliente'}</small><br><button id="logoutBtn">Cerrar sesion</button>`;
 renderAccount();
 toast(registerMode?'Cuenta creada correctamente':'Bienvenido de vuelta');
-if(registerMode)document.querySelector('#account').scrollIntoView({behavior:'smooth'})});
+if(registerMode||currentUser.role==='administrador')document.querySelector('#account').scrollIntoView({behavior:'smooth'})});
 
 $('#bookingForm').addEventListener('submit',async e=>{e.preventDefault();
 if(!currentUser){openAuth();

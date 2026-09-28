@@ -23,6 +23,16 @@ $input=json_decode(file_get_contents('php://input'),true) ?: $_POST;
 
 $action=$input['action'] ?? '';
 
+function requireAdmin(): array {
+  $user=$_SESSION['user']??null;
+  if(!$user||($user['role']??'')!=='administrador'){
+    http_response_code(403);
+    echo json_encode(['ok'=>false,'message'=>'Acceso reservado al administrador.']);
+    exit;
+  }
+  return $user;
+}
+
 $host='localhost';
  $db='trims_house';
  $dbUser='root';
@@ -45,7 +55,7 @@ try{
   $name=trim($input['name']??'');
 $email=strtolower(trim($input['email']??''));
 $password=$input['password']??'';
-$role=in_array($input['role']??'cliente',['cliente','barbero'],true)?$input['role']:'cliente';
+$role='cliente';
 if(!$name||!filter_var($email,FILTER_VALIDATE_EMAIL)||strlen($password)<6)throw new Exception('Completa los datos. La contraseña debe tener al menos 6 caracteres.');
 $stmt=$pdo->prepare('INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)');
 $stmt->execute([$name,$email,password_hash($password,PASSWORD_DEFAULT),$role]);
@@ -56,12 +66,38 @@ exit;
 
 }
 
+ if($action==='admin_dashboard'){
+  requireAdmin();
+  $stats=$pdo->query("SELECT (SELECT COUNT(*) FROM users) AS users,(SELECT COUNT(*) FROM appointments) AS appointments,(SELECT COUNT(*) FROM appointments WHERE status='pendiente') AS pending")->fetch(PDO::FETCH_ASSOC);
+  $appointments=$pdo->query('SELECT a.id,u.name AS customer,u.email,b.name AS barber,a.service,a.appointment_date,a.appointment_time,a.status FROM appointments a JOIN users u ON u.id=a.user_id LEFT JOIN barbers b ON b.id=a.barber_id ORDER BY a.appointment_date DESC,a.appointment_time DESC')->fetchAll(PDO::FETCH_ASSOC);
+  $users=$pdo->query('SELECT id,name,email,role,created_at FROM users ORDER BY created_at DESC')->fetchAll(PDO::FETCH_ASSOC);
+  echo json_encode(['ok'=>true,'stats'=>$stats,'appointments'=>$appointments,'users'=>$users]);
+  exit;
+ }
+
+ if($action==='admin_update_appointment'){
+  requireAdmin();
+  $appointmentId=filter_var($input['appointment_id']??null,FILTER_VALIDATE_INT);
+  $status=$input['status']??'';
+  if(!$appointmentId||!in_array($status,['pendiente','confirmada','cancelada'],true))throw new Exception('Cita o estado no valido.');
+  $stmt=$pdo->prepare('UPDATE appointments SET status=? WHERE id=?');
+  $stmt->execute([$status,$appointmentId]);
+  if(!$stmt->rowCount()){
+    $check=$pdo->prepare('SELECT id FROM appointments WHERE id=?');
+    $check->execute([$appointmentId]);
+    if(!$check->fetch())throw new Exception('No se encontro la cita.');
+  }
+  echo json_encode(['ok'=>true]);
+  exit;
+ }
+
  if($action==='login'){
   $stmt=$pdo->prepare('SELECT id,name,email,password,role FROM users WHERE email=?');
 $stmt->execute([strtolower(trim($input['email']??''))]);
 $row=$stmt->fetch(PDO::FETCH_ASSOC);
 if(!$row||!password_verify($input['password']??'',$row['password']))throw new Exception('Correo o contraseña incorrectos.');
 unset($row['password']);
+session_regenerate_id(true);
 $_SESSION['user']=$row;
 echo json_encode(['ok'=>true,'user'=>$row]);
 exit;

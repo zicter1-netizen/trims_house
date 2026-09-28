@@ -94,6 +94,39 @@ $user = $_SESSION['user'] ?? null;
           <p class="section-description" id="accountSubtitle"></p>
         </div>
         <div id="appointmentList" class="appointment-list"></div>
+        <div id="adminPanel" class="admin-panel hidden">
+          <div class="admin-toolbar">
+            <div>
+              <p class="eyebrow">CONTROL DEL NEGOCIO</p>
+              <h3>Administración</h3>
+            </div>
+            <button class="button button-gold" type="button" id="refreshAdminBtn" aria-label="Actualizar datos">Actualizar</button>
+          </div>
+          <p class="form-message" id="adminMessage" role="status"></p>
+          <div class="admin-stats" aria-live="polite">
+            <div><span>Usuarios registrados</span><strong id="adminUserCount">0</strong></div>
+            <div><span>Citas totales</span><strong id="adminAppointmentCount">0</strong></div>
+            <div><span>Citas pendientes</span><strong id="adminPendingCount">0</strong></div>
+          </div>
+          <section class="admin-block">
+            <div class="admin-block-heading"><h3>Gestión de citas</h3><span id="adminBookingsLabel"></span></div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead><tr><th>Cliente</th><th>Servicio</th><th>Barbero</th><th>Fecha y hora</th><th>Estado</th><th>Acción</th></tr></thead>
+                <tbody id="adminAppointments"></tbody>
+              </table>
+            </div>
+          </section>
+          <section class="admin-block">
+            <div class="admin-block-heading"><h3>Usuarios</h3><span id="adminUsersLabel"></span></div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead><tr><th>Nombre</th><th>Correo</th><th>Perfil</th><th>Registrado</th></tr></thead>
+                <tbody id="adminUsers"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
       </section>
     </div>
 
@@ -203,11 +236,6 @@ $user = $_SESSION['user'] ?? null;
 <label>Contraseña<input type="password" name="password" required placeholder="••••••••">
 </label>
 <label id="nameField" class="hidden">Nombre completo<input type="text" name="name" placeholder="Tu nombre">
-</label>
-<label id="roleField" class="hidden">Tipo de cuenta<select name="role">
-<option value="cliente">Cliente</option>
-<option value="barbero">Barbero</option>
-</select>
 </label>
 <button class="button button-gold full" type="submit" id="authSubmit">Entrar a mi cuenta <span>↗</span>
 </button>
