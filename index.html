@@ -1,0 +1,261 @@
+<?php
+session_start();
+$user = $_SESSION['user'] ?? null;
+?>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trims House, barberia premium y tienda para tu estilo.">
+  <title>Trims House | Barberia & Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/dark-theme.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Trims House inicio">
+      <span class="brand-mark">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<path d="M13 12l20 20M51 12L31 32M13 52l20-20M51 52L31 32"/>
+<circle cx="13" cy="12" r="5"/>
+<circle cx="51" cy="12" r="5"/>
+<circle cx="13" cy="52" r="5"/>
+<circle cx="51" cy="52" r="5"/>
+<path d="M27 28h10v18a5 5 0 0 1-10 0V28Z"/>
+<path d="M26 23h12v6H26zM29 19h6v4h-6z"/>
+</svg>
+</span>
+      <span>
+<b>TRIMS</b>
+<small>HOUSE</small>
+</span>
+    </a>
+    <nav class="main-nav" aria-label="Navegacion principal">
+<a href="#barberos">Barberos</a>
+<a href="#cuidado">Cuidado</a>
+<a href="#ropa">Ropa</a>
+<a href="#reservar">Reservar</a>
+</nav>
+    <div class="header-actions">
+<button class="icon-btn" id="cartBtn" aria-label="Ver carrito">Carrito <span id="cartCount">0</span>
+</button>
+<button class="user-button" id="authBtn">Iniciar sesion <span class="arrow">↗</span>
+</button>
+<div class="user-menu hidden" id="userMenu">
+</div>
+</div>
+  </header>
+
+  <main>
+    <div class="view-panel active" id="inicioView" data-view="inicio">
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <p class="eyebrow">BARBERIA · ESTILO · COMUNIDAD</p>
+          <h1>Tu mejor<br><em>version.</em></h1>
+          <p class="hero-text">Cortes precisos, productos seleccionados y una experiencia hecha para ti.</p>
+          <div class="hero-actions">
+            <a class="button button-gold" href="#reservar">Reservar cita <span>↗</span></a>
+            <a class="text-link" href="#barberos">Conoce al equipo <span>↓</span></a>
+          </div>
+        </div>
+        <div class="hero-image hero-carousel carousel slide" id="carouselExampleAutoplaying" data-bs-ride="carousel" aria-label="Carrusel de imagenes iniciales">
+          <div class="hero-carousel-track carousel-inner">
+            <a class="hero-slide carousel-item active is-active" href="#inicio" aria-label="Imagen principal">
+              <img src="https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?auto=format&fit=crop&w=1200&q=85" alt="Barbero realizando un corte profesional">
+            </a>
+            <a class="hero-slide carousel-item" href="#cuidado" aria-label="Producto destacado">
+              <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1200&q=80" alt="Producto de la tienda de Trims House">
+            </a>
+          </div>
+          <button class="hero-carousel-arrow hero-carousel-prev carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" aria-label="Anterior">‹</button>
+          <button class="hero-carousel-arrow hero-carousel-next carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" aria-label="Siguiente">›</button>
+          <div class="hero-badge">
+            <strong>08</strong>
+            <span>AÑOS<br>DE ESTILO</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-strip">
+        <p><span class="gold-dot"></span> Hecho para quienes no pasan desapercibidos</p>
+        <p class="strip-note">LUN — SAB <b>10:00 — 20:00</b></p>
+      </section>
+
+      <section class="account-section hidden" id="account">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">TU ESPACIO</p>
+            <h2 id="accountTitle">Mis citas.</h2>
+          </div>
+          <p class="section-description" id="accountSubtitle"></p>
+        </div>
+        <div id="appointmentList" class="appointment-list"></div>
+      </section>
+    </div>
+
+    <div class="view-panel" id="barberosView" data-view="barberos">
+      <section class="section" id="barberos">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EL EQUIPO</p>
+            <h2>Manos expertas.<br><em>Estilo propio.</em></h2>
+          </div>
+          <p class="section-description">Cada barbero tiene su firma. Encuentra el que entiende exactamente lo que buscas.</p>
+        </div>
+        <div class="barber-grid" id="barberGrid"></div>
+      </section>
+    </div>
+
+    <div class="view-panel" id="ropaView" data-view="ropa">
+      <section class="shop-section" id="ropa">
+        <div class="section-heading shop-heading">
+          <div>
+            <p class="eyebrow">ROPA Y ACCESORIOS</p>
+            <h2>Viste tu<br><em>propio estilo.</em></h2>
+          </div>
+        </div>
+        <div class="product-grid" id="ropaGrid"></div>
+      </section>
+    </div>
+
+    <div class="view-panel" id="cuidadoView" data-view="cuidado">
+      <section class="shop-section" id="cuidado">
+        <div class="section-heading shop-heading">
+          <div>
+            <p class="eyebrow">CUIDADO PERSONAL</p>
+            <h2>Tu rutina,<br><em>con identidad.</em></h2>
+          </div>
+        </div>
+        <div class="product-grid" id="cuidadoGrid"></div>
+      </section>
+    </div>
+
+    <div class="view-panel" id="reservarView" data-view="reservar">
+      <section class="booking-section" id="reservar">
+        <div class="booking-panel">
+          <div>
+            <p class="eyebrow">TU PROXIMA CITA</p>
+            <h2>El estilo<br><em>empieza aqui.</em></h2>
+            <p>Elige tu barbero, servicio y horario. Nosotros nos encargamos del resto.</p>
+          </div>
+          <form id="bookingForm" class="booking-form">
+            <label>Barbero<select name="barber_id" id="bookingBarber" required></select></label>
+            <label>Servicio<select name="service" required>
+              <option value="Corte clasico">Corte clasico · $28.000 COP</option>
+              <option value="Corte VIP todo incluido">Corte VIP todo incluido · $65.000 COP</option>
+              <option value="Corte con masaje">Corte con masaje · $45.000 COP</option>
+              <option value="Depilacion de nariz">Depilacion de nariz · $15.000 COP</option>
+              <option value="Fade + barba">Fade + barba · $38.000 COP</option>
+              <option value="Ritual de barba">Ritual de barba · $22.000 COP</option>
+              <option value="Corte infantil">Corte infantil · $22.000 COP</option>
+            </select></label>
+            <div class="form-row">
+              <label>Fecha<input type="date" name="date" required></label>
+              <label>Hora<select name="time" required>
+                <option value="10:00">10:00</option>
+                <option value="12:00">12:00</option>
+                <option value="14:00">14:00</option>
+                <option value="16:00">16:00</option>
+                <option value="18:00">18:00</option>
+              </select></label>
+            </div>
+            <button class="button button-gold" type="submit">Confirmar cita <span>↗</span></button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+<a class="brand" href="#inicio" aria-label="Trims House inicio">
+<span class="brand-mark small">
+<svg viewBox="0 0 64 64" aria-hidden="true">
+<path d="M13 12l20 20M51 12L31 32M13 52l20-20M51 52L31 32"/>
+<circle cx="13" cy="12" r="5"/>
+<circle cx="51" cy="12" r="5"/>
+<circle cx="13" cy="52" r="5"/>
+<circle cx="51" cy="52" r="5"/>
+<path d="M27 28h10v18a5 5 0 0 1-10 0V28Z"/>
+<path d="M26 23h12v6H26zM29 19h6v4h-6z"/>
+</svg>
+</span>
+<span>
+<b>TRIMS</b>
+<small>HOUSE</small>
+</span>
+</a>
+<p>La casa de tu mejor version.</p>
+<p>© 2024 Trims House</p>
+</footer>
+
+  <div class="modal hidden" id="authModal">
+<div class="modal-card">
+<button class="close-btn" data-close="authModal">×</button>
+<p class="eyebrow">BIENVENIDO A CASA</p>
+<h2 id="authTitle">Inicia sesion.</h2>
+<p class="modal-lead">Guarda tus citas y lleva tu estilo al siguiente nivel.</p>
+<form id="authForm">
+<label>Correo electronico<input type="email" name="email" required placeholder="tu@email.com">
+</label>
+<label>Contraseña<input type="password" name="password" required placeholder="••••••••">
+</label>
+<label id="nameField" class="hidden">Nombre completo<input type="text" name="name" placeholder="Tu nombre">
+</label>
+<label id="roleField" class="hidden">Tipo de cuenta<select name="role">
+<option value="cliente">Cliente</option>
+<option value="barbero">Barbero</option>
+</select>
+</label>
+<button class="button button-gold full" type="submit" id="authSubmit">Entrar a mi cuenta <span>↗</span>
+</button>
+</form>
+<button class="switch-auth" id="switchAuth">¿Nuevo por aqui? <b>Crea tu cuenta</b>
+</button>
+<p class="form-message" id="authMessage">
+</p>
+</div>
+</div>
+  <style>.product-modal-card{max-width:760px;width:min(100%,760px);display:grid;grid-template-columns:1fr 1fr;gap:28px;position:relative}.product-modal-image{width:100%;height:360px;object-fit:cover}.product-modal-copy{display:flex;flex-direction:column;justify-content:center}.product-modal-copy h2{margin:8px 0 14px}.product-modal-copy p:not(.eyebrow){color:var(--muted);line-height:1.7}.modal-price{font-size:22px;color:var(--gold);margin:18px 0 24px}.cart-modal-card{width:min(100%,560px);position:relative}.cart-items{max-height:360px;overflow:auto;margin:20px 0}.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}.cart-item img{width:70px;height:70px;object-fit:cover}.cart-item strong,.cart-item small{display:block}.cart-item small{color:var(--muted);margin:7px 0}.cart-remove{padding:0;background:none;color:#a44b3e;font-size:12px}.cart-total{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:18px 0;font-size:18px}.cart-total strong{color:var(--gold)}.view-panel{display:none}.view-panel.active{display:block}.main-nav a.active{color:var(--gold)}@media(max-width:600px){.product-modal-card{grid-template-columns:1fr;gap:8px}.product-modal-image{height:240px}.product-modal-copy{padding:0 4px 8px}}</style>
+  <div class="modal hidden" id="productModal">
+<div class="modal-card product-modal-card">
+<button class="close-btn" data-close="productModal">×</button>
+<img id="productModalImage" class="product-modal-image" alt="">
+<div class="product-modal-copy">
+<p class="eyebrow">TRIMS HOUSE SHOP</p>
+<h2 id="productModalTitle">
+</h2>
+<p id="productModalDescription">
+</p>
+<strong id="productModalPrice" class="modal-price">
+</strong>
+<button id="productModalAdd" class="button button-gold full" type="button">Agregar al carrito <span>↗</span>
+</button>
+</div>
+</div>
+</div>
+  <div class="modal hidden" id="cartModal">
+<div class="modal-card cart-modal-card">
+<button class="close-btn" data-close="cartModal">×</button>
+<p class="eyebrow">TU COMPRA</p>
+<h2>Tu carrito.</h2>
+<div id="cartItems" class="cart-items">
+</div>
+<div class="cart-total">
+<span>Total</span>
+<strong id="cartTotal">
+</strong>
+</div>
+<button id="checkoutBtn" class="button button-gold full" type="button">Finalizar compra <span>↗</span>
+</button>
+</div>
+</div>
+  <div class="toast" id="toast">
+</div>
+<script>window.INITIAL_USER = null;</script>
+<script src="assets/js/app.js">
+</script>
+</body>
+</html>

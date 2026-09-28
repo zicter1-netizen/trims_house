@@ -1,0 +1,1202 @@
+:root {
+  --ink: #10100f;
+  --paper: #f4f1ea;
+  --gold: #c99a43;
+  --gold-light: #e7c478;
+  --muted: #8d8980;
+  --line: #d8d1c3;
+  --white: #fffdfa;
+}
+
+/* =========================
+   RESET
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex !important;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.site-header {
+  height: 82px;
+  padding: 0 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 0.85;
+}
+
+.brand b {
+  font-size: 17px;
+  letter-spacing: 3px;
+  display: block;
+}
+
+.brand small {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  color: var(--gold);
+  display: block;
+}
+
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.main-nav {
+  display: flex;
+  gap: 38px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.main-nav a:hover,
+.text-link:hover {
+  color: var(--gold);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  position: relative;
+}
+
+.icon-btn {
+  background: transparent;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.icon-btn span {
+  display: inline-grid;
+  place-items: center;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 50%;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+}
+
+.user-button {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 16px;
+  font-size: 12px;
+}
+
+.arrow {
+  color: var(--gold);
+  margin-left: 8px;
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 51px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 14px;
+  width: 190px;
+  box-shadow: 0 12px 30px #0002;
+  font-size: 12px;
+}
+
+.user-menu button {
+  background: none;
+  color: #a44b3e;
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+  background: var(--ink);
+  color: var(--paper);
+  min-height: 620px;
+  padding: 70px 9vw 75px;
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 8vw;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2.4px;
+  color: var(--gold);
+  font-weight: 700;
+  margin: 0 0 18px;
+}
+
+.hero h1,
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(50px, 6.4vw, 92px);
+  line-height: 0.96;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.hero h1 em,
+h2 em {
+  font-weight: 600;
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.hero-text {
+  max-width: 330px;
+  color: #bbb5a9;
+  line-height: 1.7;
+  font-size: 14px;
+  margin: 27px 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 16px 20px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+
+.button span {
+  font-size: 18px;
+}
+
+.button-gold {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.button-gold:hover {
+  background: var(--gold-light);
+}
+
+.text-link {
+  font-size: 12px;
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 5px;
+}
+
+.text-link span {
+  color: var(--gold);
+  font-size: 17px;
+  margin-left: 8px;
+}
+
+.hero-image {
+  height: 475px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 475px;
+  overflow: hidden;
+  background: #0f0f0f;
+}
+
+.hero-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  pointer-events: none;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: grayscale(25%);
+}
+
+.hero-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(16, 16, 15, 0.62);
+  color: var(--cream);
+  font-family: Arial, sans-serif;
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0 0 4px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-carousel-arrow:hover {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  color: var(--ink);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.hero-carousel-arrow:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 4px;
+}
+
+.hero-carousel-prev {
+  left: 18px;
+}
+
+.hero-carousel-next {
+  right: 18px;
+}
+
+.hero-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--gold);
+  color: var(--ink);
+  width: 125px;
+  height: 125px;
+  padding: 19px;
+  z-index: 2;
+}
+
+.hero-badge strong {
+  font-family: 'Playfair Display';
+  font-size: 47px;
+  display: block;
+  line-height: 1;
+}
+
+.hero-badge span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+/* =========================
+   INTRO STRIP
+   ========================= */
+
+.intro-strip {
+  padding: 22px 9vw;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.intro-strip p {
+  margin: 0;
+}
+
+.gold-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.strip-note {
+  color: var(--muted);
+}
+
+.strip-note b {
+  color: var(--ink);
+  margin-left: 15px;
+}
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+.section {
+  padding: 110px 9vw;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 55px;
+}
+
+.section h2,
+.shop-section h2,
+.account-section h2 {
+  font-size: 55px;
+}
+
+.section-description {
+  max-width: 270px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* =========================
+   BARBERS
+   ========================= */
+
+.barber-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.barber-card {
+  position: relative;
+}
+
+.barber-card img {
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  transition: 0.35s;
+}
+
+.barber-card:hover img {
+  filter: grayscale(15%);
+}
+
+.barber-info {
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+}
+
+.barber-info h3 {
+  margin: 0;
+  font-family: 'Playfair Display';
+  font-size: 22px;
+}
+
+.barber-info p {
+  font-size: 11px;
+  color: var(--gold);
+  margin: 6px 0 0;
+}
+
+.barber-info .barber-description {
+  max-width: 260px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 12px 0 14px;
+}
+
+.barber-info strong {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 7px;
+}
+
+.barber-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.barber-info li {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.barber-info li::before {
+  content: '·';
+  color: var(--gold);
+  margin-right: 6px;
+}
+
+.barber-info span {
+  font-size: 23px;
+  color: var(--gold);
+}
+
+/* =========================
+   SHOP
+   ========================= */
+
+.shop-section {
+  background: #e7e1d6;
+  padding: 100px 9vw;
+}
+
+.shop-heading {
+  margin-bottom: 40px;
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.category-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.15);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.category-tab.active,
+.category-tab:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.product-card {
+  background: var(--white);
+  position: relative;
+}
+
+.product-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.product-info {
+  padding: 18px;
+}
+
+.product-info h3 {
+  font-family: 'Playfair Display';
+  margin: 0 0 7px;
+  font-size: 19px;
+}
+
+.product-info p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+  min-height: 35px;
+  margin: 0;
+}
+
+.product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.add-cart {
+  background: var(--ink);
+  color: var(--gold-light);
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+}
+
+.add-cart:hover {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* =========================
+   BOOKING
+   ========================= */
+
+.booking-section {
+  padding: 100px 9vw;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.booking-panel {
+  max-width: 980px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10vw;
+}
+
+.booking-panel h2 {
+  font-size: 58px;
+}
+
+.booking-panel p:not(.eyebrow) {
+  color: #aaa59c;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 280px;
+  margin-top: 25px;
+}
+
+.booking-form {
+  display: grid;
+  gap: 18px;
+}
+
+.booking-form label,
+.modal-card label {
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: grid;
+  gap: 8px;
+}
+
+/* =========================
+   BOOKING INPUTS
+   ========================= */
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #65615a;
+  color: var(--paper);
+  padding: 10px 0;
+  outline: none;
+  border-radius: 0;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  border-bottom-color: var(--gold);
+}
+
+.booking-form input::placeholder {
+  color: #aaa59c;
+  opacity: 1;
+}
+
+.booking-form select option {
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* =========================
+   FORM ROW
+   ========================= */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* =========================
+   ACCOUNT
+   ========================= */
+
+.account-section {
+  padding: 90px 9vw;
+}
+
+.appointment-list {
+  display: grid;
+  gap: 10px;
+}
+
+.appointment {
+  background: var(--white);
+  border-left: 3px solid var(--gold);
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment strong {
+  font-family: 'Playfair Display';
+  font-size: 18px;
+}
+
+.appointment small {
+  display: block;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.status {
+  font-size: 10px;
+  color: #4f8b66;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer.site-footer {
+  padding: 18px 6vw;
+  min-height: 72px;
+  background: #10100f !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #eee9de !important;
+  border-top: 1px solid #45433d;
+  margin-top: auto;
+}
+
+.site-footer .brand {
+  gap: 8px;
+}
+
+.site-footer .brand b {
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  color: #eee9de;
+}
+
+.site-footer .brand small {
+  font-size: 7px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+
+.site-footer p {
+  color: #aaa69c;
+}
+
+.brand-mark.small {
+  width: 28px;
+  height: 28px;
+  color: var(--gold);
+}
+
+/* ==================================================
+   MODAL
+   ================================================== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 16, 15, 0.8);
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+/* Caja del modal */
+
+.modal-card {
+  background: #242522;
+  color: #fdfdf0;
+  width: min(430px, 100%);
+  padding: 42px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Título */
+
+.modal-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  line-height: 1;
+  color: #fdfdf0;
+  margin: 0;
+}
+
+/* Texto debajo del título */
+
+.modal-lead {
+  font-size: 13px;
+  color: #aaa59c;
+  line-height: 1.5;
+  margin: 14px 0 26px;
+}
+
+/* Formulario */
+
+.modal-card form {
+  display: grid;
+  gap: 20px;
+}
+
+/* Labels */
+
+.modal-card label {
+  color: var(--gold);
+}
+
+/* ==================================================
+   INPUTS DEL MODAL
+   ================================================== */
+
+.modal-card input,
+.modal-card select,
+.modal-card textarea {
+  width: 100%;
+  background: transparent !important;
+  border: 0;
+  border-bottom: 1px solid #4b4a45;
+  color: #fdfdf0 !important;
+
+  /*
+    Esta propiedad fuerza el color del texto
+    en Chrome/Edge/Safari.
+  */
+  -webkit-text-fill-color: #fdfdf0 !important;
+
+  padding: 10px 0;
+  outline: none;
+  border-radius: 0;
+  opacity: 1 !important;
+}
+
+/* Cuando haces clic */
+
+.modal-card input:focus,
+.modal-card select:focus,
+.modal-card textarea:focus {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  border-bottom-color: var(--gold);
+}
+
+/* ==================================================
+   EMAIL
+   ================================================== */
+
+.modal-card input[type="email"] {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background-color: transparent !important;
+}
+
+/* ==================================================
+   PASSWORD
+   ================================================== */
+
+.modal-card input[type="password"] {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background-color: transparent !important;
+}
+
+/* ==================================================
+   TEXT
+   ================================================== */
+
+.modal-card input[type="text"] {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background-color: transparent !important;
+}
+
+/* ==================================================
+   PLACEHOLDER
+   ================================================== */
+
+.modal-card input::placeholder,
+.modal-card textarea::placeholder {
+  color: #aaa59c !important;
+  -webkit-text-fill-color: #aaa59c !important;
+  opacity: 1 !important;
+}
+
+/* ==================================================
+   AUTOCOMPLETADO CHROME
+   ================================================== */
+
+.modal-card input:-webkit-autofill,
+.modal-card input:-webkit-autofill:hover,
+.modal-card input:-webkit-autofill:focus,
+.modal-card input:-webkit-autofill:active {
+  -webkit-text-fill-color: #fdfdf0 !important;
+
+  /*
+    Evita que Chrome ponga fondo amarillo/blanco
+    al correo o contraseña guardados.
+  */
+  -webkit-box-shadow: 0 0 0 1000px #242522 inset !important;
+
+  box-shadow: 0 0 0 1000px #242522 inset !important;
+
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ==================================================
+   SELECT DEL MODAL
+   ================================================== */
+
+.modal-card select {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background-color: transparent !important;
+  cursor: pointer;
+}
+
+.modal-card select option {
+  color: #10100f !important;
+  background: #f4f1ea !important;
+}
+
+/* ==================================================
+   CLOSE BUTTON
+   ================================================== */
+
+.close-btn {
+  position: absolute;
+  right: 18px;
+  top: 15px;
+  background: transparent;
+  font-size: 26px;
+  color: #aaa59c;
+}
+
+.close-btn:hover {
+  color: #fdfdf0;
+}
+
+/* ==================================================
+   BOTÓN FULL
+   ================================================== */
+
+.full {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* ==================================================
+   SWITCH AUTH
+   ================================================== */
+
+.switch-auth {
+  display: block;
+  margin: 22px auto 0;
+  background: none;
+  font-size: 12px;
+  color: #aaa59c;
+}
+
+.switch-auth b {
+  color: #fdfdf0;
+}
+
+.switch-auth:hover b {
+  color: var(--gold);
+}
+
+/* ==================================================
+   FORM MESSAGE
+   ================================================== */
+
+.form-message {
+  text-align: center;
+  font-size: 12px;
+  color: #d97969;
+  min-height: 15px;
+}
+
+/* ==================================================
+   TOAST
+   ================================================== */
+
+.toast {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  background: var(--ink);
+  color: var(--paper);
+  border-left: 3px solid var(--gold);
+  padding: 16px 22px;
+  font-size: 12px;
+  transform: translateY(130px);
+  transition: 0.3s;
+  z-index: 70;
+}
+
+.toast.show {
+  transform: translateY(0);
+}
+
+/* ==================================================
+   RESPONSIVE 800PX
+   ================================================== */
+
+@media (max-width: 800px) {
+
+  .site-header {
+    padding: 0 5vw;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  .user-button {
+    padding: 10px 8px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 65px 7vw;
+    gap: 40px;
+  }
+
+  .hero-image {
+    height: 350px;
+  }
+
+  .intro-strip {
+    padding: 18px 7vw;
+    display: block;
+  }
+
+  .strip-note {
+    margin-top: 10px !important;
+  }
+
+  .section,
+  .shop-section,
+  .booking-section,
+  .account-section {
+    padding: 72px 7vw;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: 35px;
+  }
+
+  .section-description {
+    margin-top: 22px;
+  }
+
+  .barber-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .barber-card img {
+    height: 280px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product-card img {
+    height: 200px;
+  }
+
+  .booking-panel {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .booking-panel h2 {
+    font-size: 50px;
+  }
+
+  footer {
+    display: grid;
+    gap: 16px;
+  }
+
+  .appointment {
+    display: block;
+  }
+
+  .status {
+    display: block;
+    margin-top: 12px;
+  }
+}
+
+/* ==================================================
+   RESPONSIVE 480PX
+   ================================================== */
+
+@media (max-width: 480px) {
+
+  .brand b {
+    font-size: 14px;
+  }
+
+  .icon-btn {
+    font-size: 0;
+  }
+
+  .icon-btn span {
+    font-size: 10px;
+  }
+
+  .hero h1 {
+    font-size: 59px;
+  }
+
+  .hero-actions {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .barber-grid,
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .barber-card img {
+    height: 350px;
+  }
+
+  .product-card img {
+    height: 280px;
+  }
+
+  .modal-card {
+    padding: 32px 23px;
+  }
+
+  .modal-card h2 {
+    font-size: 38px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

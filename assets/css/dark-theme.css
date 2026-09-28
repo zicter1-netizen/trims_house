@@ -1,0 +1,568 @@
+/* =========================================================
+   TRIMS HOUSE - DARK THEME
+   ========================================================= */
+
+:root {
+  --paper: #171716;
+  --white: #252521;
+  --muted: #aaa69c;
+  --line: #45433d;
+
+  --ink: #eee9de;
+  --gold: #c99a43;
+  --gold-light: #e7c478;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+  background: var(--paper);
+  color: #eee9de;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header,
+.intro-strip,
+.section,
+.account-section,
+footer {
+  background: var(--paper);
+}
+
+footer.site-footer {
+  background: #10100f !important;
+  color: #eee9de !important;
+}
+
+.site-header {
+  border-bottom-color: var(--line);
+}
+
+.icon-btn {
+  color: #eee9de;
+}
+
+.main-nav {
+  color: #eee9de;
+}
+
+.main-nav a {
+  color: #eee9de;
+}
+
+.brand {
+  color: #eee9de;
+}
+
+.brand b {
+  color: #eee9de;
+}
+
+.user-button {
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: #fff8e6;
+}
+
+.user-button:hover {
+  background: var(--gold-light);
+  color: #171716;
+}
+
+/* =========================================================
+   USER MENU
+   ========================================================= */
+
+.user-menu {
+  background: var(--white);
+  color: #eee9de;
+  border-color: var(--line);
+}
+
+.user-menu button {
+  color: #d97969;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  background: #10100f;
+  color: #eee9de;
+}
+
+.hero h1 {
+  color: #eee9de;
+}
+
+.hero-text {
+  color: #aaa69c;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section-heading h2,
+.section h2,
+.account-section h2,
+.shop-section h2 {
+  color: #eee9de;
+}
+
+.section-description {
+  color: #aaa69c;
+}
+
+/* =========================================================
+   BARBERS
+   ========================================================= */
+
+.barber-card {
+  color: #eee9de;
+}
+
+.barber-card h3 {
+  color: #eee9de;
+}
+
+.barber-info strong {
+  color: #eee9de;
+}
+
+.barber-info li {
+  color: #aaa69c;
+}
+
+/* =========================================================
+   SHOP
+   ========================================================= */
+
+.shop-section {
+  background: #22221f;
+}
+
+.product-card {
+  background: var(--white);
+  border-color: var(--line);
+  color: #eee9de;
+}
+
+.product-card h3 {
+  color: #eee9de;
+}
+
+.product-card p {
+  color: #aaa69c;
+}
+
+.price {
+  color: #eee9de;
+}
+
+/* =========================================================
+   BOOKING
+   ========================================================= */
+
+.booking-section {
+  background: #22221f;
+  color: #eee9de;
+}
+
+.booking-panel {
+  color: #eee9de;
+}
+
+.booking-panel h2 {
+  color: #eee9de;
+}
+
+.booking-panel p {
+  color: #aaa69c;
+}
+
+.booking-panel label {
+  color: var(--gold);
+}
+
+/* =========================================================
+   BOOKING INPUTS
+   ========================================================= */
+
+.booking-form input,
+.booking-form select {
+  background: transparent !important;
+  color: #eee9de !important;
+  -webkit-text-fill-color: #eee9de !important;
+  border-color: #45433d;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  color: #eee9de !important;
+  -webkit-text-fill-color: #eee9de !important;
+  border-bottom-color: var(--gold);
+}
+
+.booking-form input::placeholder {
+  color: #aaa69c !important;
+  -webkit-text-fill-color: #aaa69c !important;
+}
+
+.booking-form select option {
+  background: #252521;
+  color: #171716;
+}
+
+/* =========================================================
+   ACCOUNT
+   ========================================================= */
+
+.account-section {
+  background: var(--paper);
+  color: #eee9de;
+}
+
+.appointment {
+  background: var(--white);
+  color: #eee9de;
+  border-color: var(--gold);
+}
+
+.appointment strong {
+  color: #eee9de;
+}
+
+.appointment small {
+  color: #aaa69c;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  background: #10100f;
+  color: #aaa69c;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.modal-card {
+  background: #252521 !important;
+  color: #eee9de !important;
+  border: 1px solid rgba(201, 154, 67, 0.25) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.52) !important;
+  overflow: hidden;
+}
+
+.modal-card h2,
+.modal-card p,
+.modal-card .modal-lead,
+.modal-card .switch-auth,
+.modal-card .switch-auth b,
+.modal-card .form-message,
+.product-modal-copy,
+.product-modal-copy h2,
+.product-modal-copy p:not(.eyebrow),
+.cart-modal-card,
+.cart-item strong,
+.cart-item small,
+.cart-total,
+.cart-total strong {
+  color: #eee9de !important;
+}
+
+.modal-card .modal-lead,
+.modal-card .switch-auth,
+.modal-card .form-message,
+.product-modal-copy p:not(.eyebrow),
+.cart-item small {
+  color: #aaa69c !important;
+}
+
+/* =========================================================
+   MODAL TITULO
+   ========================================================= */
+
+.modal-card h2 {
+  color: #eee9de !important;
+}
+
+/* =========================================================
+   MODAL TEXTO
+   ========================================================= */
+
+.modal-lead {
+  color: #aaa69c !important;
+}
+
+/* =========================================================
+   MODAL LABELS
+   ========================================================= */
+
+.modal-card label {
+  color: var(--gold) !important;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.modal-card form {
+  gap: 18px;
+}
+
+.modal-card .switch-auth {
+  margin-top: 18px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   MODAL INPUTS
+   ========================================================= */
+
+/*
+   IMPORTANTE:
+   Estas reglas son específicas del modal de login/registro.
+*/
+
+#authModal .modal-card input,
+#authModal .modal-card select {
+  width: 100%;
+  background: transparent !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid #45433d !important;
+
+  color: #fdfdf0 !important;
+
+  /*
+     Esta es la propiedad importante para Chrome,
+     Edge y navegadores basados en WebKit.
+  */
+  -webkit-text-fill-color: #fdfdf0 !important;
+
+  padding: 10px 0;
+  outline: none;
+  opacity: 1 !important;
+
+  caret-color: #fdfdf0 !important;
+}
+
+/* =========================================================
+   EMAIL - ESPECÍFICO
+   ========================================================= */
+
+#authModal .modal-card input[type="email"] {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background: transparent !important;
+  caret-color: #fdfdf0 !important;
+}
+
+/* =========================================================
+   PASSWORD - ESPECÍFICO
+   ========================================================= */
+
+#authModal .modal-card input[type="password"] {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background: transparent !important;
+  caret-color: #fdfdf0 !important;
+}
+
+/* =========================================================
+   NOMBRE - ESPECÍFICO
+   ========================================================= */
+
+#authModal .modal-card input[type="text"] {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background: transparent !important;
+  caret-color: #fdfdf0 !important;
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+#authModal .modal-card input:focus,
+#authModal .modal-card select:focus {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  border-bottom-color: var(--gold) !important;
+}
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+#authModal .modal-card input::placeholder {
+  color: #aaa69c !important;
+  -webkit-text-fill-color: #aaa69c !important;
+  opacity: 1 !important;
+}
+
+/* =========================================================
+   AUTOCOMPLETADO DE CHROME
+   ========================================================= */
+
+#authModal .modal-card input:-webkit-autofill,
+#authModal .modal-card input:-webkit-autofill:hover,
+#authModal .modal-card input:-webkit-autofill:focus,
+#authModal .modal-card input:-webkit-autofill:active {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+
+  background-color: #252521 !important;
+
+  -webkit-box-shadow: 0 0 0 1000px #252521 inset !important;
+  box-shadow: 0 0 0 1000px #252521 inset !important;
+
+  caret-color: #fdfdf0 !important;
+}
+
+/* =========================================================
+   SELECT MODAL
+   ========================================================= */
+
+#authModal .modal-card select {
+  color: #fdfdf0 !important;
+  -webkit-text-fill-color: #fdfdf0 !important;
+  background: transparent !important;
+  cursor: pointer;
+}
+
+#authModal .modal-card select option {
+  color: #171716 !important;
+  background: #f4f1ea !important;
+}
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.close-btn {
+  color: #aaa69c;
+  background: transparent;
+}
+
+.close-btn:hover {
+  color: #fdfdf0;
+}
+
+/* =========================================================
+   SWITCH LOGIN / REGISTER
+   ========================================================= */
+
+.switch-auth {
+  color: #aaa69c;
+}
+
+.switch-auth b {
+  color: #eee9de;
+}
+
+.switch-auth:hover b {
+  color: var(--gold);
+}
+
+/* =========================================================
+   MENSAJES
+   ========================================================= */
+
+.form-message {
+  color: #d97969;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.button-gold {
+  background: var(--gold);
+  color: #171716 !important;
+}
+
+.button-gold:hover {
+  background: var(--gold-light);
+  color: #171716 !important;
+}
+
+/* =========================================================
+   PRODUCT MODAL
+   ========================================================= */
+
+.product-modal-copy {
+  color: #eee9de;
+}
+
+.product-modal-copy h2 {
+  color: #eee9de;
+}
+
+.product-modal-copy p:not(.eyebrow) {
+  color: #aaa69c;
+}
+
+.modal-price {
+  color: var(--gold);
+}
+
+/* =========================================================
+   CART MODAL
+   ========================================================= */
+
+.cart-modal-card {
+  background: #252521 !important;
+  color: #eee9de !important;
+}
+
+.cart-item {
+  border-bottom-color: var(--line);
+}
+
+.cart-item strong {
+  color: #eee9de;
+}
+
+.cart-item small {
+  color: #aaa69c;
+}
+
+.cart-total {
+  border-top-color: var(--line);
+  color: #eee9de;
+}
+
+.cart-total strong {
+  color: var(--gold);
+}
+
+.cart-remove {
+  color: #d97969;
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.toast {
+  background: #10100f;
+  color: #eee9de;
+  border-left-color: var(--gold);
+}
