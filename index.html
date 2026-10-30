@@ -12,8 +12,8 @@ $user = $_SESSION['user'] ?? null;
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/dark-theme.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261030-2">
+  <link rel="stylesheet" href="assets/css/dark-theme.css?v=20261030-2">
 </head>
 <body>
   <header class="site-header">
@@ -112,7 +112,7 @@ $user = $_SESSION['user'] ?? null;
             <div class="admin-block-heading"><h3>Gestión de citas</h3><span id="adminBookingsLabel"></span></div>
             <div class="admin-table-wrap">
               <table class="admin-table">
-                <thead><tr><th>Cliente</th><th>Servicio</th><th>Barbero</th><th>Fecha y hora</th><th>Estado</th><th>Acción</th></tr></thead>
+                <thead><tr><th>Cliente</th><th>Servicio</th><th>Barbero</th><th>Fecha y hora</th><th>Acabado</th><th>Indicaciones</th><th>Estado</th><th>Acción</th></tr></thead>
                 <tbody id="adminAppointments"></tbody>
               </table>
             </div>
@@ -170,33 +170,68 @@ $user = $_SESSION['user'] ?? null;
     <div class="view-panel" id="reservarView" data-view="reservar">
       <section class="booking-section" id="reservar">
         <div class="booking-panel">
-          <div>
-            <p class="eyebrow">TU PROXIMA CITA</p>
-            <h2>El estilo<br><em>empieza aqui.</em></h2>
-            <p>Elige tu barbero, servicio y horario. Nosotros nos encargamos del resto.</p>
+          <div class="booking-intro">
+            <p class="eyebrow">RESERVA TU EXPERIENCIA</p>
+            <h2>Haz espacio para<br><em>tu mejor version.</em></h2>
+            <p>Un buen corte cambia el día. Reserva tu momento, relájate y deja que nuestro equipo se encargue del resto.</p>
+            <div class="section-description booking-highlights">
+              <p><strong>Tu visita, a tu manera</strong></p>
+              <p><span class="gold-dot"></span> Barberos expertos en tu estilo.</p>
+              <p><span class="gold-dot"></span> Servicios pensados para cada detalle.</p>
+              <p><span class="gold-dot"></span> Reserva rápida y atención personalizada.</p>
+              <p><strong>Estamos aquí para ti</strong><br>Lunes a sábado · 10:00 a 20:00</p>
+            </div>
           </div>
           <form id="bookingForm" class="booking-form">
-            <label>Barbero<select name="barber_id" id="bookingBarber" required></select></label>
-            <label>Servicio<select name="service" required>
-              <option value="Corte clasico">Corte clasico · $28.000 COP</option>
-              <option value="Corte VIP todo incluido">Corte VIP todo incluido · $65.000 COP</option>
-              <option value="Corte con masaje">Corte con masaje · $45.000 COP</option>
-              <option value="Depilacion de nariz">Depilacion de nariz · $15.000 COP</option>
-              <option value="Fade + barba">Fade + barba · $38.000 COP</option>
-              <option value="Ritual de barba">Ritual de barba · $22.000 COP</option>
-              <option value="Corte infantil">Corte infantil · $22.000 COP</option>
-            </select></label>
-            <div class="form-row">
-              <label>Fecha<input type="date" name="date" required></label>
-              <label>Hora<select name="time" required>
-                <option value="10:00">10:00</option>
-                <option value="12:00">12:00</option>
-                <option value="14:00">14:00</option>
-                <option value="16:00">16:00</option>
-                <option value="18:00">18:00</option>
-              </select></label>
+            <div class="booking-form-header">
+              <p class="eyebrow">DISEÑA TU VISITA</p>
+              <span class="booking-step-count">PASO 1 — 5</span>
             </div>
-            <button class="button button-gold" type="submit">Confirmar cita <span>↗</span></button>
+            <label for="bookingBarber">01 · Elige tu barbero<div class="booking-select-control" data-step="01"><select name="barber_id" id="bookingBarber" required aria-label="Selecciona tu barbero"></select></div></label>
+            <label for="bookingService">02 · Elige tu servicio<div class="booking-select-control booking-service-control" data-step="02"><select name="service" id="bookingService" required>
+              <option value="" disabled selected>Selecciona el servicio que quieres</option>
+              <optgroup label="Cortes y estilo">
+                <option value="Corte clasico">Corte clasico · 45 min · $28.000 COP</option>
+                <option value="Fade clasico">Fade clasico · 45 min · $32.000 COP</option>
+                <option value="Fade con diseno">Fade con diseno · 60 min · $42.000 COP</option>
+                <option value="Corte VIP todo incluido">Corte VIP todo incluido · 75 min · $65.000 COP</option>
+                <option value="Corte con masaje">Corte con masaje · 60 min · $45.000 COP</option>
+                <option value="Texturizado">Texturizado · 60 min · $40.000 COP</option>
+                <option value="Corte infantil">Corte infantil · 45 min · $22.000 COP</option>
+              </optgroup>
+              <optgroup label="Barba y complementos">
+                <option value="Fade + barba">Fade + barba · 60 min · $38.000 COP</option>
+                <option value="Ritual de barba">Ritual de barba · 45 min · $22.000 COP</option>
+                <option value="Arreglo de barba">Arreglo de barba · 30 min · $18.000 COP</option>
+                <option value="Depilacion de nariz">Depilacion de nariz · 15 min · $15.000 COP</option>
+                <option value="Coloracion">Coloracion · 90 min · $70.000 COP</option>
+              </optgroup>
+            </select></div></label>
+            <div class="form-row">
+              <label for="bookingDate">03 · Elige la fecha<input type="date" name="date" id="bookingDate" required></label>
+              <label for="bookingTime">Hora preferida<div class="booking-select-control" data-step="03"><select name="time" id="bookingTime" required>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+              </select></div></label>
+            </div>
+            <label for="bookingFinish">04 · ¿Cómo quieres terminar tu look?<div class="booking-select-control" data-step="04"><select name="finish" id="bookingFinish">
+              <option value="Acabado natural">Acabado natural</option>
+              <option value="Acabado mate">Acabado mate</option>
+              <option value="Acabado brillante">Acabado brillante</option>
+              <option value="Sin producto">Sin producto</option>
+            </select></div></label>
+            <label for="bookingNote">05 · Cuéntanos qué tienes en mente<input type="text" name="note" id="bookingNote" maxlength="160" placeholder="Ej. Quiero conservar el largo arriba"></label>
+            <div class="booking-summary" id="bookingSummary" aria-live="polite">Selecciona tus opciones para ver el resumen de tu reserva.</div>
+            <p class="section-description booking-note">Al confirmar, tu solicitud quedará registrada. Podrás consultar los detalles de tu visita desde tu espacio personal.</p>
+            <button class="button button-gold" type="submit">Reservar mi cita <span>↗</span></button>
           </form>
         </div>
       </section>
@@ -283,7 +318,7 @@ $user = $_SESSION['user'] ?? null;
   <div class="toast" id="toast">
 </div>
 <script>window.INITIAL_USER = null;</script>
-<script src="assets/js/app.js">
+<script src="assets/js/app.js?v=20261030-2">
 </script>
 </body>
 </html>

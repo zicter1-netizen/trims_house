@@ -75,7 +75,101 @@ function renderShopView(){
 function renderBookingView(){
   const bookingBarber=$('#bookingBarber');
   if(!bookingBarber) return;
-  bookingBarber.innerHTML=barbers.map(b=>`<option value="${b.id}">${b.name} · ${b.specialty}</option>`).join('');
+  bookingBarber.innerHTML='<option value="" disabled selected>Selecciona un barbero</option>'+barbers.map(b=>`<option value="${b.id}">${b.name} · ${b.specialty}</option>`).join('');
+  const bookingDate=$('#bookingDate');
+  if(bookingDate){
+    const today=new Date();
+    const year=today.getFullYear();
+    const month=String(today.getMonth()+1).padStart(2,'0');
+    const day=String(today.getDate()).padStart(2,'0');
+    bookingDate.min=`${year}-${month}-${day}`;
+  }
+  setupCustomBookingSelects();
+  updateBookingSummary();
+}
+
+function setupCustomBookingSelects(){
+  document.querySelectorAll('#bookingForm .booking-select-control select').forEach(select=>{
+    const control=select.closest('.booking-select-control');
+    if(!control||control.querySelector('.custom-select-trigger'))return;
+    const trigger=document.createElement('button');
+    trigger.type='button';
+    trigger.className='custom-select-trigger';
+    trigger.setAttribute('aria-haspopup','listbox');
+    trigger.setAttribute('aria-expanded','false');
+    const menu=document.createElement('div');
+    menu.className='custom-select-menu';
+    menu.setAttribute('role','listbox');
+    const firstOption=select.options[0];
+    const placeholder=firstOption&&firstOption.disabled?firstOption.textContent:'Selecciona una opcion';
+    const updateTrigger=()=>{
+      const option=select.options[select.selectedIndex];
+      trigger.innerHTML=`<span>${escapeHtml(option?option.textContent:placeholder)}</span><i aria-hidden="true"></i>`;
+      trigger.classList.toggle('is-placeholder',!select.value);
+    };
+    [...select.children].forEach(child=>{
+      if(child.tagName==='OPTGROUP'){
+        const group=document.createElement('div');
+        group.className='custom-select-group';
+        group.textContent=child.label;
+        menu.appendChild(group);
+        [...child.children].forEach(option=>appendCustomOption(option,menu,select,updateTrigger));
+      }else if(child.tagName==='OPTION'&&!child.disabled){
+        appendCustomOption(child,menu,select,updateTrigger);
+      }
+    });
+    const toggle=()=>{
+      const isOpen=control.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded',String(isOpen));
+    };
+    trigger.addEventListener('click',toggle);
+    menu.addEventListener('click',event=>{
+      const option=event.target.closest('[data-value]');
+      if(!option)return;
+      select.value=option.dataset.value;
+      menu.querySelectorAll('.custom-select-option').forEach(entry=>entry.classList.toggle('is-selected',entry===option));
+      updateTrigger();
+      select.dispatchEvent(new Event('change',{bubbles:true}));
+      control.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded','false');
+    });
+    select.classList.add('native-booking-select');
+    control.append(trigger,menu);
+    updateTrigger();
+  });
+}
+
+function appendCustomOption(option,menu,select,updateTrigger){
+  const item=document.createElement('button');
+  item.type='button';
+  item.className='custom-select-option';
+  item.dataset.value=option.value;
+  item.setAttribute('role','option');
+  item.textContent=option.textContent;
+  item.addEventListener('click',()=>{
+    menu.querySelectorAll('.custom-select-option').forEach(entry=>entry.classList.remove('is-selected'));
+    item.classList.add('is-selected');
+    updateTrigger();
+  });
+  menu.appendChild(item);
+}
+
+function updateBookingSummary(){
+  const summary=$('#bookingSummary');
+  const form=$('#bookingForm');
+  if(!summary||!form)return;
+  const data=new FormData(form);
+  const barber=barbers.find(b=>String(b.id)===String(data.get('barber_id')));
+  const service=data.get('service');
+  const date=data.get('date');
+  const time=data.get('time');
+  if(!barber||!service||!date||!time){
+    summary.textContent='Selecciona tus opciones para ver el resumen de tu reserva.';
+    return;
+  }
+  const formattedDate=new Intl.DateTimeFormat('es-CO',{day:'numeric',month:'long',year:'numeric'}).format(new Date(`${date}T12:00:00`));
+  const note=data.get('note');
+  summary.innerHTML=`<strong>Tu reserva</strong><br>${escapeHtml(service)} · ${formattedDate} a las ${time}<br>Con ${escapeHtml(barber.name)} · ${escapeHtml(data.get('finish')||'Acabado natural')}${note?`<br>Nota: ${escapeHtml(note)}`:''}`;
 }
 
 function initHomeView(){
@@ -214,13 +308,15 @@ async function loadAdminDashboard(){
     <td>${escapeHtml(appointment.service)}</td>
     <td>${escapeHtml(appointment.barber||'Sin asignar')}</td>
     <td>${escapeHtml(appointment.appointment_date)} · ${escapeHtml(String(appointment.appointment_time).slice(0,5))}</td>
+    <td>${escapeHtml(appointment.finish||'Acabado natural')}</td>
+    <td>${escapeHtml(appointment.note||'Sin indicaciones')}</td>
     <td><select aria-label="Estado de la cita ${appointment.id}" data-status-for="${appointment.id}">
       <option value="pendiente" ${appointment.status==='pendiente'?'selected':''}>Pendiente</option>
       <option value="confirmada" ${appointment.status==='confirmada'?'selected':''}>Confirmada</option>
       <option value="cancelada" ${appointment.status==='cancelada'?'selected':''}>Cancelada</option>
     </select></td>
     <td><button class="admin-save-btn" type="button" data-appointment-id="${appointment.id}">Guardar</button></td>
-  </tr>`).join(''):'<tr><td colspan="6" class="admin-empty">Todavía no hay citas registradas.</td></tr>';
+  </tr>`).join(''):'<tr><td colspan="8" class="admin-empty">Todavía no hay citas registradas.</td></tr>';
   $('#adminUsers').innerHTML=result.users.length?result.users.map(user=>`<tr>
     <td>${escapeHtml(user.name)}</td><td>${escapeHtml(user.email)}</td>
     <td>${escapeHtml(user.role)}</td><td>${escapeHtml(String(user.created_at).slice(0,10))}</td>
@@ -375,7 +471,24 @@ localStorage.setItem('trimsAppointments',JSON.stringify(all));
 e.target.reset();
 renderAccount();
 toast('Cita confirmada, te esperamos en casa');
+updateBookingSummary();
 $('#account').scrollIntoView({behavior:'smooth'})}else toast(result.message||'No se pudo reservar')});
+
+['bookingBarber','bookingService','bookingDate','bookingTime','bookingFinish'].forEach(id=>{
+  const field=$(`#${id}`);
+  if(field)field.addEventListener('change',updateBookingSummary);
+});
+const bookingNote=$('#bookingNote');
+if(bookingNote)bookingNote.addEventListener('input',updateBookingSummary);
+document.addEventListener('click',event=>{
+  document.querySelectorAll('.booking-select-control.is-open').forEach(control=>{
+    if(!control.contains(event.target)){
+      control.classList.remove('is-open');
+      const trigger=control.querySelector('.custom-select-trigger');
+      if(trigger)trigger.setAttribute('aria-expanded','false');
+    }
+  });
+});
 
 document.addEventListener('click',async e=>{if(e.target.id==='logoutBtn'){await post({action:'logout'});
 currentUser=null;
@@ -385,4 +498,3 @@ renderAccount();
 toast('Sesion cerrada')}});
 
 render();
-

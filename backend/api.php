@@ -40,7 +40,13 @@ $host='localhost';
 
 try{
   $pdo=new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4",$dbUser,$dbPass,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
-
+  $appointmentColumns=$pdo->query('SHOW COLUMNS FROM appointments')->fetchAll(PDO::FETCH_COLUMN);
+  if(!in_array('finish',$appointmentColumns,true)){
+    $pdo->exec("ALTER TABLE appointments ADD COLUMN finish VARCHAR(60) NOT NULL DEFAULT 'Acabado natural' AFTER appointment_time");
+  }
+  if(!in_array('note',$appointmentColumns,true)){
+    $pdo->exec('ALTER TABLE appointments ADD COLUMN note VARCHAR(160) NULL AFTER finish');
+  }
 }
 catch(PDOException $e){
   http_response_code(503);
@@ -69,7 +75,7 @@ exit;
  if($action==='admin_dashboard'){
   requireAdmin();
   $stats=$pdo->query("SELECT (SELECT COUNT(*) FROM users) AS users,(SELECT COUNT(*) FROM appointments) AS appointments,(SELECT COUNT(*) FROM appointments WHERE status='pendiente') AS pending")->fetch(PDO::FETCH_ASSOC);
-  $appointments=$pdo->query('SELECT a.id,u.name AS customer,u.email,b.name AS barber,a.service,a.appointment_date,a.appointment_time,a.status FROM appointments a JOIN users u ON u.id=a.user_id LEFT JOIN barbers b ON b.id=a.barber_id ORDER BY a.appointment_date DESC,a.appointment_time DESC')->fetchAll(PDO::FETCH_ASSOC);
+  $appointments=$pdo->query('SELECT a.id,u.name AS customer,u.email,b.name AS barber,a.service,a.appointment_date,a.appointment_time,a.finish,a.note,a.status FROM appointments a JOIN users u ON u.id=a.user_id LEFT JOIN barbers b ON b.id=a.barber_id ORDER BY a.appointment_date DESC,a.appointment_time DESC')->fetchAll(PDO::FETCH_ASSOC);
   $users=$pdo->query('SELECT id,name,email,role,created_at FROM users ORDER BY created_at DESC')->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode(['ok'=>true,'stats'=>$stats,'appointments'=>$appointments,'users'=>$users]);
   exit;
@@ -107,8 +113,10 @@ exit;
  if($action==='book'){
   $user=$_SESSION['user']??null;
 if(!$user)throw new Exception('Debes iniciar sesion.');
-$stmt=$pdo->prepare('INSERT INTO appointments(user_id,barber_id,service,appointment_date,appointment_time,status) VALUES(?,?,?,?,?,?)');
-$stmt->execute([$user['id'],$input['barber_id'],$input['service'],$input['date'],$input['time'],'pendiente']);
+  $finish=trim($input['finish']??'Acabado natural');
+  $note=trim($input['note']??'');
+  $stmt=$pdo->prepare('INSERT INTO appointments(user_id,barber_id,service,appointment_date,appointment_time,finish,note,status) VALUES(?,?,?,?,?,?,?,?)');
+  $stmt->execute([$user['id'],$input['barber_id'],$input['service'],$input['date'],$input['time'],$finish,$note?:null,'pendiente']);
 echo json_encode(['ok'=>true]);
 exit;
 
@@ -130,4 +138,3 @@ catch(Exception $e){
 echo json_encode(['ok'=>false,'message'=>$e->getMessage()]);
 
 }
-
